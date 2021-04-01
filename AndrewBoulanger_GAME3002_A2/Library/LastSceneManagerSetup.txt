@@ -1,5 +1,5 @@
 sceneSetups:
-- path: C:/Users/andre/Downloads/Week5/Week5/Assets/Scenes/Plunger.unity
+- path: C:/Users/andre/Downloads/AndrewBoulanger_GAME3002_A2-main/AndrewBoulanger_GAME3002_A2-main/AndrewBoulanger_GAME3002_A2/Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

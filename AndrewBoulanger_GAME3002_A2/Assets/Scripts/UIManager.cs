@@ -8,10 +8,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject instructionText = null;
-    private bool InstructionTextActive = true;
-
-    [SerializeField]
     private Text scoreText = null;
     [SerializeField]
     private Text livesText = null;
@@ -20,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     private int score;
 
+    [SerializeField] private Canvas GameOverHud = null;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +25,6 @@ public class UIManager : MonoBehaviour
         Collidable.CollectPointsDelegate = UpdateScore;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (InstructionTextActive && Input.GetKeyUp(KeyCode.Space))
-        {
-            InstructionTextActive = false;
-            instructionText.SetActive(false);
-        }
-    }
 
     void UpdateScore(int val)
     {
@@ -60,6 +48,9 @@ public class UIManager : MonoBehaviour
                 livesText.color = Color.green;
                 livesDisplay.color = Color.green;
                 break;
+            case 0:
+                GameOverHud.gameObject.SetActive(true);
+                break;
             default:
                 break;
         }
@@ -73,14 +64,4 @@ public class UIManager : MonoBehaviour
         livesDisplay.text = ballIcon;
     }
 
-    void ResetUI()
-    {
-       InstructionTextActive = true;
-       instructionText.SetActive(true);
-
-       score = 0;
-       scoreText.text = score.ToString();
-
-       UpdateLives(3);
-    }
 }

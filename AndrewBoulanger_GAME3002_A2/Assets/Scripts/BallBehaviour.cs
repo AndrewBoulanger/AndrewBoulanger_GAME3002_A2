@@ -20,6 +20,7 @@ public class BallBehaviour : MonoBehaviour
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
+        transform.position = spawnPoint.position;
     }
 
     // Update is called once per frame
@@ -28,10 +29,15 @@ public class BallBehaviour : MonoBehaviour
         //respawn if ball falls off the screen
         if (transform.position.y <= -10)
         {
-            transform.position = spawnPoint.position;
             lives--; 
             //send number of lives to the UI
             OnRespawn(lives);
+            //and respawn
+            if (lives > 0)
+            {
+                transform.position = spawnPoint.position;
+                m_rb.velocity = Vector3.zero;
+            }
         }
     }
     private void FixedUpdate()
